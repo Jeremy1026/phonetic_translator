@@ -1,0 +1,71 @@
+<html>
+<head>
+	<title>Simple Phonetic Translator</title>
+	<style>
+		.base {
+			width: 100%; 
+			display: block;
+			height: 100%;
+			margin-bottom: -20px;
+		}
+		.footer {
+			height: 20px;
+		}
+
+		.info, .footer , #phoneticInput, #phoneticOutput {
+			display: block; 
+			width: 80%; 
+			margin: 0 auto; 
+			text-align: center; 
+		}
+
+		#phoneticInput, #phoneticOutput {
+			padding: 20px; 
+			height: 30px; 
+			font-size: 30px;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="base">
+		<div class="info">
+			<h1>Simple Phonetic Translator</h1>
+			<p>Enter text in the input below and instantly you'll be given the NATO Phonetic representation of your input.</p>
+		</div>
+		<input type="text" name="phonetic" id="phoneticInput"/>
+		<span id="phoneticOutput"></span>
+	</div>
+	<div class="footer">&copy;2017 Jeremy Curcio &bull; <a href="https://github.com/Jeremy1026/phonetic_translator">Fork me on GitHub</a></div>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+	<script type="text/javascript">
+		var phoneticAlphabet = {"A": "Alpha", "B": "Bravo", "C": "Charlie", "D": "Delta", "E": "Echo", "F": "Foxtrot", "G": "Golf", "H": "Hotel", "I": "India", "J": "Juliet", "K": "Kilo", "L": "Limo", "M": "Mike", "N": "November", "O": "Oscar", "P": "Papa", "Q": "Quebec", "R": "Romeo", "S": "Sierra", "T": "Tango", "U": "Uniform", "V": "Victor", "W": "Whiskey", "X": "Xray", "Y": "Yankee", "Z": "Zulu", "1": "One", "2": "Two", "3": "Three", "4": "Four", "5": "Five", "6": "Six", "7": "Seven", "8": "Eight", "9": "Nine", "0": "Ten", "-": "Dash", " ": "<br>"
+		}
+
+		$(document).ready(function() {
+			$('#phoneticInput').focus();
+		});
+
+		$('#phoneticInput').keyup(function() {
+			generate();
+		});
+
+		function generate() {
+			var input = $('#phoneticInput').val();
+			var characters = input.split("");
+			var output = '';
+
+			characters.forEach(function(element, index, array) {
+				if (phoneticAlphabet[element.toUpperCase()]) {
+					output += phoneticAlphabet[element.toUpperCase()]+" ";
+				}
+			});
+
+			$("#phoneticOutput").html(output);
+		}
+
+	</script>
+</body>
+</html>
